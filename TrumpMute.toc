@@ -1,0 +1,10 @@
+## Interface: 16001
+## Title: TrumpMute
+## Notes: Mutes anyone who says "trump" in chat: hides that message and everything they say after.
+## Author: Marc
+## Version: @project-version@
+## IconTexture: Interface\Common\VoiceChat-Muted
+## SavedVariables: TrumpMuteDB
+
+Data.lua
+Core.lua
