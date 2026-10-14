@@ -30,39 +30,45 @@ local function IsMe(key)
     return me and not IsSecret(me) and NameKey(me) == key
 end
 
-local function Mute(name, reason)
+-- Adds them to the mute list; returns the name stored, or nil if already muted or it's you.
+local function Mute(name)
     local key = NameKey(name)
-    if db.muted[key] or IsMe(key) then return false end
-    db.muted[key] = FirstName(name)
-    if db.notify and reason then
-        Print(("muted |cffffd100%s|r (%s). |cffaaaaaa/trumpmute unmute %s|r to undo."):format(db.muted[key], reason, db.muted[key]))
-    end
-    return true
+    if db.muted[key] or IsMe(key) then return end
+    local first = FirstName(name)
+    db.muted[key] = first:sub(1, 1):upper() .. first:sub(2) -- "/tmute mute ann" lists as "Ann"
+    return db.muted[key]
+end
+
+local function PrintMuted(name, reason)
+    Print(("muted |cffffd100%s|r%s. |cffaaaaaa/trumpmute unmute %s|r to undo."):format(
+        name, reason and " (" .. reason .. ")" or "", name))
 end
 
 ---------------------------------------------------------------------------
 -- Chat filter
 ---------------------------------------------------------------------------
--- Runs once per chat frame showing the event; return true to hide the line.
-local function Filter(_, _, msg, author, ...)
-    if not db or not db.enabled then return false end
+local function ShouldHide(msg, author)
     if type(author) ~= "string" or IsSecret(author) or author == "" then return false end
-
     local key = NameKey(author)
-    local lineID = select(9, ...)
-    local newLine = not IsSecret(lineID) and lineID ~= lastLine
-    if newLine then lastLine = lineID end
-
-    if db.muted[key] then
-        if newLine then hiddenCount = hiddenCount + 1 end
-        return true
-    end
+    if db.muted[key] then return true end
 
     if type(msg) ~= "string" or IsSecret(msg) or IsMe(key) then return false end
     if not strlower(msg):find(ns.TRIGGER) then return false end
 
-    Mute(author, "said trump")
-    if newLine then hiddenCount = hiddenCount + 1 end
+    local name = Mute(author)
+    if name and db.notify then PrintMuted(name, "said trump") end
+    return true
+end
+
+-- Runs once per chat frame showing the event; return true to hide the line.
+local function Filter(_, _, msg, author, ...)
+    if not db or not db.enabled or not ShouldHide(msg, author) then return false end
+    -- Count each line once, not once per chat frame.
+    local lineID = select(9, ...)
+    if not IsSecret(lineID) and lineID ~= lastLine then
+        lastLine = lineID
+        hiddenCount = hiddenCount + 1
+    end
     return true
 end
 
@@ -112,8 +118,9 @@ end
 function commands.mute(arg)
     if arg == "" then return Print("usage: /trumpmute mute <name>") end
     if IsMe(NameKey(arg)) then return Print("you can't mute yourself.") end
-    if Mute(arg) then
-        Print(("muted |cffffd100%s|r."):format(db.muted[NameKey(arg)]))
+    local name = Mute(arg)
+    if name then
+        PrintMuted(name)
     else
         Print(("%s is already muted."):format(arg))
     end
