@@ -5,6 +5,7 @@
 ## Version: @project-version@
 ## IconTexture: Interface\Common\VoiceChat-Muted
 ## SavedVariables: TrumpMuteDB
+## X-Curse-Project-ID: 1743963
 
 Data.lua
 Core.lua
