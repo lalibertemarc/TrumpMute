@@ -1,4 +1,4 @@
--- TrumpMute: anyone who says "trump" in chat gets muted. That message and
+-- TrumpMute: anyone who says a trigger word ("trump", "republican") in chat gets muted. That message and
 -- everything they say afterwards is hidden from your chat windows.
 local addonName, ns = ...
 
@@ -47,16 +47,25 @@ end
 ---------------------------------------------------------------------------
 -- Chat filter
 ---------------------------------------------------------------------------
+-- Returns the trigger word msg contains, or nil.
+local function FindTrigger(msg)
+    msg = strlower(msg)
+    for _, trigger in ipairs(ns.TRIGGERS) do
+        if msg:find(trigger.pattern) then return trigger.word end
+    end
+end
+
 local function ShouldHide(msg, author)
     if type(author) ~= "string" or IsSecret(author) or author == "" then return false end
     local key = NameKey(author)
     if db.muted[key] then return true end
 
     if type(msg) ~= "string" or IsSecret(msg) or IsMe(key) then return false end
-    if not strlower(msg):find(ns.TRIGGER) then return false end
+    local word = FindTrigger(msg)
+    if not word then return false end
 
     local name = Mute(author)
-    if name and db.notify then PrintMuted(name, "said trump") end
+    if name and db.notify then PrintMuted(name, "said " .. word) end
     return true
 end
 

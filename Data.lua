@@ -1,8 +1,12 @@
 -- TrumpMute: static data.
 local _, ns = ...
 
--- Lowercased whole-word pattern. Matches "Trump", "TRUMP!", "trump's"; not "trumpet" or "trumps".
-ns.TRIGGER = "%f[%a]trump%f[%A]"
+-- Lowercased whole-word patterns, each with the word named in the "muted" notice.
+-- "trump" matches "Trump", "TRUMP!", "trump's"; not "trumpet" or "trumps".
+ns.TRIGGERS = {
+    { pattern = "%f[%a]trump%f[%A]", word = "trump" },
+    { pattern = "%f[%a]republicans?%f[%A]", word = "republican" },
+}
 
 -- Player chat a muted player can show up in.
 ns.CHAT_EVENTS = {

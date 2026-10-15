@@ -1,5 +1,10 @@
 # TrumpMute
 
+## v1.1.0
+
+- "Republican" and "Republicans" now mute too, same whole-word rules as "trump" (not "Republicanism").
+- The "muted" notice names the word they said.
+
 ## v1.0.0
 
 - First release for WoW Forever.
