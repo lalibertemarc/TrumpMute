@@ -1,4 +1,4 @@
--- TrumpMute: anyone who says a trigger word ("trump", "republican") in chat gets muted. That message and
+-- TrumpMute: anyone who says a trigger word ("trump", "republican", "maga") in chat gets muted. That message and
 -- everything they say afterwards is hidden from your chat windows.
 local addonName, ns = ...
 

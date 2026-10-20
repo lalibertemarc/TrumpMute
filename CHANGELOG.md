@@ -1,5 +1,9 @@
 # TrumpMute
 
+## v1.2.0
+
+- "MAGA" now mutes too, same whole-word rules (not "magazine").
+
 ## v1.1.0
 
 - "Republican" and "Republicans" now mute too, same whole-word rules as "trump" (not "Republicanism").

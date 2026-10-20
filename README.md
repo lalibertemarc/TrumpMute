@@ -1,15 +1,15 @@
 # TrumpMute
 
-**One word and they're gone. Say "trump" or "republican" in chat and you're muted.**
+**One word and they're gone. Say "trump", "republican" or "maga" in chat and you're muted.**
 
-You logged in to slay dragons, not to read the same argument in Trade chat for the ninth time today. TrumpMute keeps watch on chat for you. The moment a player says **"trump"**, **"republican"** or **"republicans"**, that message disappears, and so does everything they say after it. They get no warning, nothing goes on the ignore list, and the argument never reaches your screen.
+You logged in to slay dragons, not to read the same argument in Trade chat for the ninth time today. TrumpMute keeps watch on chat for you. The moment a player says **"trump"**, **"republican"**, **"republicans"** or **"maga"**, that message disappears, and so does everything they say after it. They get no warning, nothing goes on the ignore list, and the argument never reaches your screen.
 
 ## Features
 
 - **One strike and they're out:** the message that says the word is hidden, and that player is muted from then on
 - **Remembers them:** the mute list is saved, so they stay muted after a logout or `/reload`
 - **Every channel:** General, Trade, LookingForGroup, say, yell, emotes, whispers, guild, officer, party, raid, instance and communities
-- **Whole word only:** "Trump", "TRUMP!!", "trump's" and "Republicans" count. Your "trumpet" and "strumpet" jokes are safe, and so is "Republicanism"
+- **Whole word only:** "Trump", "TRUMP!!", "trump's", "Republicans" and "#MAGA" count. Your "trumpet" and "strumpet" jokes are safe, and so are "Republicanism" and "magazine"
 - **Never mutes you:** your own messages always show
 - **Invisible to them:** it's client-side only. Nothing goes on the ignore list and the player can't tell
 - **No setup:** install it and it's working. No options window, no minimap button

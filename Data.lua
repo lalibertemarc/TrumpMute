@@ -6,6 +6,7 @@ local _, ns = ...
 ns.TRIGGERS = {
     { pattern = "%f[%a]trump%f[%A]", word = "trump" },
     { pattern = "%f[%a]republicans?%f[%A]", word = "republican" },
+    { pattern = "%f[%a]maga%f[%A]", word = "maga" },
 }
 
 -- Player chat a muted player can show up in.
