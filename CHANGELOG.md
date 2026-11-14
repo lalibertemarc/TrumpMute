@@ -1,5 +1,9 @@
 # TrumpMute
 
+## v1.2.1
+
+- Listed under **Chat & Communication** in the game's AddOns list.
+
 ## v1.2.0
 
 - "MAGA" now mutes too, same whole-word rules (not "magazine").
