@@ -3,6 +3,7 @@
 ## Notes: Mutes anyone who says "trump", "republican(s)" or "maga" in chat: hides that message and everything they say after.
 ## Author: Marc
 ## Version: @project-version@
+## Category: Chat & Communication
 ## IconTexture: Interface\Common\VoiceChat-Muted
 ## SavedVariables: TrumpMuteDB
 ## X-Curse-Project-ID: 1743963
